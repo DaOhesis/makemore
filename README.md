@@ -1,105 +1,141 @@
-# Makemore Portfolio: Building Language Models from Scratch
+# Makemore: Building Language Models from Scratch
 
-This repository documents my implementation of the **Makemore** series by **Andrej Karpathy**, exploring the foundations of generative AI and language modeling from simple statistical methods to modern neural architectures.
+> A from-scratch implementation of **Andrej Karpathy's Makemore** series using **PyTorch**, documenting the evolution of language models from simple statistical methods to modern Transformer architectures.
 
-The project trains character-level language models on a dataset of **32,000+ unique names**, gradually building models capable of generating entirely new, phonetically plausible human names.
+This repository follows the progression of the Makemore series, implementing each model from first principles to build an intuitive understanding of how language models work internally.
 
-## 📚 Project Roadmap
-
-This repository is being updated progressively as I work through each architecture in the series.
-
-### Part 1: Bigram Language Model ✅
-
-A simple statistical language model built using character transition counts and a single-layer neural network.
-
-### Part 2: MLP Language Model 🚧
-
-Implementing a Multi-Layer Perceptron based on the **Bengio et al. (2003)** paper, introducing embeddings and nonlinear representations.
-
-### Part 3: Batch Normalization & Activations 🚧
-
-Exploring deep network initialization, activation functions, manual backpropagation, and training diagnostics.
-
-### Part 4: WaveNet 🚧
-
-Building a hierarchical convolutional architecture capable of modeling longer contexts efficiently.
-
-### Part 5: GPT / Transformer 🚧
-
-Implementing the core self-attention mechanisms that power modern Large Language Models.
+The models are trained on a dataset of **32,000+ unique human names**, learning to generate entirely new, phonetically plausible names one character at a time.
 
 ---
 
-##  Current Status: Part 1 — Character Bigram Model
+## Project Roadmap
 
-The first phase focuses on building a character-level bigram language model trained on a dataset of names.
-
-### Key Concepts Implemented
-
-#### Character Pair Extraction
-
-Using Python's `zip()` function to create overlapping character pairs while preserving word boundaries through special start and end tokens.
-
-#### Transition Matrix Construction
-
-Building a **27 × 27** tensor in PyTorch that stores the frequency of character-to-character transitions.
-
-#### Probability Normalization
-
-Converting raw frequency counts into valid probability distributions through row-wise normalization.
-
-#### Stochastic Sampling
-
-Using `torch.multinomial()` to sample characters according to learned probabilities, enabling the generation of entirely new names.
-
-#### Neural Network Formulation
-
-Re-implementing the bigram model as a single-layer neural network and optimizing it using gradient descent.
+| Part | Architecture                      |     Status     |
+| :--- | :-------------------------------- | :------------: |
+| 1    | Bigram Language Model             |   ✅ Completed  |
+| 2    | Multi-Layer Perceptron (MLP)      | 🚧 In Progress |
+| 3    | Batch Normalization & Activations |     Planned    |
+| 4    | WaveNet                           |     Planned    |
+| 5    | GPT / Transformer                 |     Planned    |
 
 ---
 
-##  Technologies Used
+## Implemented Models
 
-* Python
-* PyTorch
-* NumPy
-* Matplotlib
-* Jupyter Notebook
+### Part 1 : Bigram Language Model
+
+A character-level language model implemented using both statistical methods and a neural network.
+
+**Concepts Covered**
+
+* Character transition probabilities
+* Maximum Likelihood Estimation (MLE)
+* One-hot encoding
+* Negative Log-Likelihood (NLL)
+* Matrix multiplication
+* Gradient descent
+* Character-level text generation
 
 ---
 
-##  Running the Project
+### Part 2 : Multi-Layer Perceptron (Current)
 
-### 1. Clone the Repository
+Currently implementing the neural probabilistic language model introduced in **Bengio et al. (2003)**.
 
-```bash
-git clone <repository-url>
-cd <repository-name>
+**Implemented**
+
+* Character embedding lookup table
+* Context window construction
+* Dynamic tensor reshaping using `.view()`
+* Hidden layers with `tanh` activation
+* Output logits
+* Numerically stable cross-entropy loss using `torch.nn.functional.cross_entropy`
+
+**Next**
+
+* Manual backpropagation
+* Parameter optimization
+* Learning rate tuning
+* Mini-batch training
+* Model evaluation
+* Character-level name generation
+
+---
+
+## Learning Objectives
+
+This project focuses on developing a first-principles understanding of:
+
+* Statistical language modeling
+* Distributed representations (Embeddings)
+* Neural probabilistic language models
+* Forward and backward propagation
+* Tensor operations in PyTorch
+* Gradient-based optimization
+* Numerical stability
+* Training deep neural networks
+
+---
+
+## Tech Stack
+
+* **Python**
+* **PyTorch**
+* **NumPy**
+* **Matplotlib**
+* **Jupyter Notebook**
+
+---
+
+## Repository Structure
+
+```text
+makemore/
+├── README.md
+├── names.txt
+├── bigrams.ipynb
+└── mlp.ipynb
 ```
 
-### 2. Install Dependencies
+---
+
+## Getting Started
+
+Clone the repository:
+
+```bash
+git clone https://github.com/DaOhesis/makemore.git
+cd makemore
+```
+
+Install the dependencies:
 
 ```bash
 pip install torch numpy matplotlib jupyter
 ```
 
-### 3. Launch the Notebook
+Launch the notebooks:
 
 ```bash
-jupyter notebook 01_bigram_language_model/bigrams.ipynb
+# Bigram Language Model
+jupyter notebook bigrams.ipynb
+
+# Multi-Layer Perceptron
+jupyter notebook mlp.ipynb
 ```
 
 ---
 
-##  Learning Objectives
+## References
 
-Through this project, I aim to develop a first-principles understanding of:
+* Andrej Karpathy — *Makemore* Series
+* Bengio et al. (2003) — *A Neural Probabilistic Language Model*
+* PyTorch Documentation
 
-* Statistical language modeling
-* Neural network fundamentals
-* Gradient-based optimization
-* Character embeddings
-* Sequence modeling
-* Attention mechanisms and Transformers
+---
 
-Each notebook focuses on implementing concepts from scratch rather than relying on high-level abstractions, providing a deeper understanding of how modern language models work under the hood.
+## Author
+
+**Sanchayan Chakraborty**
+
+If you found this repository helpful, consider giving it a ⭐.
